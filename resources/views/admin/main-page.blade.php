@@ -16,6 +16,7 @@
             {{ auth()->user()->name }}
         @endif
     </title>
+
     <!-- Custom fonts for this template-->
     <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -30,7 +31,7 @@
 <body id="page-top">
 
     <!-- Page Wrapper -->
-    <div id="wrapper">        
+    <div id="wrapper">                
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -49,7 +50,7 @@
                 <div class="sidebar-sticky pt-3">                    
                     <ul class="nav flex-column">                       
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{route('index.emails')}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
