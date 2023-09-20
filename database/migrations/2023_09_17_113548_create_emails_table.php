@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -27,5 +28,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('emails');
+        
     }
 };

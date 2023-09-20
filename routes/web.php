@@ -33,5 +33,6 @@ Route::middleware('auth')->group(function(){
         Route::get('edit/{id}', [EmailController::class, 'edit'])->name('edit.emails');
         Route::put('edit/{id}', [EmailController::class, 'update'])->name('update.emails');
         Route::delete('delete/{id}', [EmailController::class, 'destroy'])->name('delete.emails');
+        Route::post('import-emails', [EmailController::class, 'emailImport'])->name('import.emails');
     });
 });

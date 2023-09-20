@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\EmailsImport;
 use App\Models\Email;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EmailController extends Controller
 {
@@ -26,7 +28,11 @@ class EmailController extends Controller
             'email' => 'required|email'
         ]);
 
-        Email::create([
+        Email::firstOrCreate([
+            'email' => $request->email,
+            'user_id' => auth()->user()->id,
+        ],
+        [
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
@@ -62,5 +68,17 @@ class EmailController extends Controller
         $email->delete();
 
         return back();
+    }
+
+    public function emailImport(Request $request)
+    {
+        $request->validate([
+            'file' =>'required',
+        ]);        
+
+        Excel::import(new EmailsImport, $request->file);
+
+        return back();
+
     }
 }

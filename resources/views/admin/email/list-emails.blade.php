@@ -14,7 +14,13 @@
     <h3 class="text-center mb-4">Список email клиентов</h3>
     <div class="d-flex justify-content-end">
         <a  role="button" class="btn btn-info btn-sm mb-3" href="{{route('create.emails')}}">Добавить email</a>
-      </div>
+    </div>
+    <form action="{{route('import.emails')}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file" class="form-control">
+        <br>
+        <button class="btn btn-primary">Импорт email из файла CSV</button>
+    </form>
     <div class="row">
         <div class="col-6 col-md-12 border d-flex justify-content-center flex-column">
           @if($emails->count() == 0)
