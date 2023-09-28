@@ -2,6 +2,13 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Email\CreateController;
+use App\Http\Controllers\Email\DestroyController;
+use App\Http\Controllers\Email\EditController;
+use App\Http\Controllers\Email\ImportController;
+use App\Http\Controllers\Email\IndexController;
+use App\Http\Controllers\Email\StoreController;
+use App\Http\Controllers\Email\UpdateController;
 use App\Http\Controllers\EmailController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,12 +34,12 @@ Route::middleware('auth')->group(function(){
 
     Route::prefix('emails')->group(function(){
 
-        Route::get('/', [EmailController::class, 'index'])->name('index.emails');
-        Route::get('create', [EmailController::class, 'create'])->name('create.emails');
-        Route::post('create', [EmailController::class, 'store'])->name('store.emails');
-        Route::get('edit/{id}', [EmailController::class, 'edit'])->name('edit.emails');
-        Route::put('edit/{id}', [EmailController::class, 'update'])->name('update.emails');
-        Route::delete('delete/{id}', [EmailController::class, 'destroy'])->name('delete.emails');
-        Route::post('import-emails', [EmailController::class, 'emailImport'])->name('import.emails');
+        Route::get('/', IndexController::class)->name('emails.index');
+        Route::get('create', CreateController::class)->name('emails.create');
+        Route::post('create', StoreController::class)->name('emails.store');
+        Route::get('edit/{email}', EditController::class)->name('emails.edit');
+        Route::put('edit/{email}', UpdateController::class)->name('emails.update');
+        Route::delete('delete/{email}', DestroyController::class)->name('emails.destroy');
+        Route::post('import-emails', ImportController::class)->name('emails.import');
     });
 });

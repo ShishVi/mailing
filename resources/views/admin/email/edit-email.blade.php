@@ -6,7 +6,7 @@
 <h3 class="text-center mb-4">Редактирование почты {{$email->email}}</h3>
     <div class="row">
         <div class="col-md-12 d-flex justify-content-center">
-            <form action="{{route('update.emails', $email->id)}}" method="POST" enctype="multipart/form-data" >
+            <form action="{{route('emails.update', $email->id)}}" method="POST" enctype="multipart/form-data" >
                 @csrf @method('PUT')
                 <div class="mb-3">
                     <label for="first_name" class="form-label">Имя</label>
@@ -31,7 +31,7 @@
                 </div>               
                 
                 <button type="submit" class="btn btn-info btn-sm">Сохранить</button>
-                <a role="button" class="btn btn-danger btn-sm" href="{{ route('index.emails') }}">Отмена</a>
+                <a role="button" class="btn btn-danger btn-sm" href="{{ route('emails.index') }}">Отмена</a>
 
 
             </form>
