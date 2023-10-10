@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Email;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Email\UpdateRequest;
+use App\Http\Requests\FilterRequest;
 use App\Mail\EmailShipped;
 use App\Models\Email;
 use Illuminate\Support\Facades\Mail;
@@ -10,16 +12,14 @@ use Illuminate\Http\Request;
 
 class UpdateController extends Controller
 {
-    public function __invoke(Request $request, $email)
+    public function __invoke(UpdateRequest $request, $email)
     {
-        $request->validate([
-            'first_name' => 'required|min:3',
-            'email' => 'required|email',
-        ]);
+
+        $data = $request->validated();
 
         $email = Email::find($email);
-        $email->update($request->all());
-        Mail::to($email->email)->send(new EmailShipped());
+        $email->update($data);
+        //Mail::to($email->email)->send(new EmailShipped($email));
 
         return redirect()->route('emails.index');
     }

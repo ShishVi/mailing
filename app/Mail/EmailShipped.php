@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Email;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -14,12 +15,12 @@ class EmailShipped extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
+    public $subject_email;
+    public $email_text;
+    public function __construct(protected Email $email, $subject_email, $email_text)
     {
-        //
+        $this->subject_email = $subject_email;
+        $this->email_text = $email_text;
     }
 
     /**
@@ -29,7 +30,7 @@ class EmailShipped extends Mailable
     {
         return new Envelope(
             from: new Address('saranskweb2023@mail.ru', auth()->user()->name),
-            subject: 'Email Test Shipped',
+            subject: $this->subject_email,
         );
     }
 
@@ -39,7 +40,11 @@ class EmailShipped extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'admin.email.template-email',           
+            view: 'admin.email.template-email',
+            with: [
+                'email' => $this->email,
+                'text' => $this->email_text,
+            ]
         );
     }
 

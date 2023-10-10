@@ -10,6 +10,7 @@ use App\Http\Controllers\Email\IndexController;
 use App\Http\Controllers\Email\StoreController;
 use App\Http\Controllers\Email\UpdateController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\EmailShippedController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,5 +42,11 @@ Route::middleware('auth')->group(function(){
         Route::put('edit/{email}', UpdateController::class)->name('emails.update');
         Route::delete('delete/{email}', DestroyController::class)->name('emails.destroy');
         Route::post('import-emails', ImportController::class)->name('emails.import');
+    });
+
+    Route::prefix('emails/shipped')->group(function(){
+
+        Route::get('/', [EmailShippedController::class, 'create'])->name('emails.shipped.create');
+        Route::post('/', [EmailShippedController::class, 'shippedEmail'])->name('emails.shipped.send');
     });
 });

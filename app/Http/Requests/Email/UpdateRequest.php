@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Email;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FilterRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class FilterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'email' => 'required|email:rfc,dns',
+            'first_name' => 'required|min:3',
+            'last_name' => 'required|min:3',
+
         ];
     }
 }

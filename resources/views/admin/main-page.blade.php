@@ -31,7 +31,7 @@
 <body id="page-top">
 
     <!-- Page Wrapper -->
-    <div id="wrapper">                
+    <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -47,8 +47,8 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <div class="sidebar-sticky pt-3">                    
-                    <ul class="nav flex-column">                       
+                <div class="sidebar-sticky pt-3">
+                    <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('emails.index')}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -59,9 +59,9 @@
                                 </svg>
                                 Каталог Email
                             </a>
-                        </li>                        
+                        </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{route('emails.shipped.create')}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
@@ -70,7 +70,7 @@
                                     <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                 </svg>
-                                Пользователи
+                                Отправить Письмо
                             </a>
                         </li>
                         <li class="nav-item">
@@ -84,7 +84,7 @@
                                 </svg>
                                 Роли
                             </a>
-                        </li>                       
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -96,11 +96,11 @@
                                 </svg>
                                 Список товаров
                             </a>
-                        </li>                                             
-                    </ul>                   
+                        </li>
+                    </ul>
 
                 </div>
-            </li>           
+            </li>
 
         </ul>
         <!-- End of Sidebar -->

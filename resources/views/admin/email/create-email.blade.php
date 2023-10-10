@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12 d-flex justify-content-center">
             <form action="{{route('emails.store')}}" method="POST" enctype="multipart/form-data" >
-                @csrf 
+                @csrf
                 <div class="mb-3">
                     <label for="first_name" class="form-label">Имя</label>
                     <input type="text" class="form-control" id="first_name" name="first_name" value="{{old('first_name')}}">
@@ -28,14 +28,14 @@
                     @error('email')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
-                </div>               
-                
+                </div>
+
                 <button type="submit" class="btn btn-info btn-sm">Создать</button>
                 <a role="button" class="btn btn-danger btn-sm" href="{{ route('emails.index') }}">Отмена</a>
 
 
             </form>
 
-        </div>       
+        </div>
     </div>
 @endsection
