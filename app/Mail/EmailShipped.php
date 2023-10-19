@@ -11,16 +11,20 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 
-class EmailShipped extends Mailable
+class EmailShipped extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
     public $subject_email;
     public $email_text;
-    public function __construct(protected Email $email, $subject_email, $email_text)
+    public $email_user;
+    public $name_user;
+    public function __construct(protected Email $email, $subject_email, $email_text, $email_user, $name_user)
     {
         $this->subject_email = $subject_email;
         $this->email_text = $email_text;
+        $this->email_user = $email_user;
+        $this->name_user = $name_user;
     }
 
     /**
@@ -29,7 +33,7 @@ class EmailShipped extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('saranskweb2023@mail.ru', auth()->user()->name),
+            from: new Address($this->email_user, $this->name_user),
             subject: $this->subject_email,
         );
     }

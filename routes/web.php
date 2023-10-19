@@ -11,6 +11,7 @@ use App\Http\Controllers\Email\StoreController;
 use App\Http\Controllers\Email\UpdateController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\EmailShippedController;
+use App\Http\Controllers\UserEmailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,5 +49,14 @@ Route::middleware('auth')->group(function(){
 
         Route::get('/', [EmailShippedController::class, 'create'])->name('emails.shipped.create');
         Route::post('/', [EmailShippedController::class, 'shippedEmail'])->name('emails.shipped.send');
+    });
+
+    Route::prefix('user/mailer')->group(function(){
+        Route::get('/', [UserEmailController::class, 'index'])->name('mailer-list.index');
+        Route::get('create', [UserEmailController::class, 'create'])->name('mailer-create.create');
+        Route::post('create', [UserEmailController::class, 'store'])->name('mailer-create.store');
+        Route::get('edit/{email}', [UserEmailController::class, 'edit'])->name('mailer-edit.edit');
+        Route::put('edit/{email}', [UserEmailController::class, 'update'])->name('mailer-update.update');
+        Route::delete('delete/{email}', [UserEmailController::class, 'destroy'])->name('mailer-destroy.destroy');
     });
 });

@@ -60,7 +60,6 @@ class EmailController extends Controller
 
         $email = Email::find($emailId);
         $email->update($request->all());
-        //Mail::to($email->email)->send(new EmailShipped($email));
 
         return redirect()->route('emails.index');
     }
